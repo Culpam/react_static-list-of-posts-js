@@ -9,7 +9,7 @@ export function getUserById(userId) {
   return usersFromServer.find(user => user.id === userId) || null;
 }
 
-export function getCommentById(postId) {
+export function getCommentsByPostId(postId) {
   return (
     commentsFromServer.filter(comment => comment.postId === postId) || null
   );
@@ -18,7 +18,7 @@ export function getCommentById(postId) {
 export const posts = postsFromServer.map(post => ({
   ...post,
   user: getUserById(post.userId),
-  comments: getCommentById(post.id),
+  comments: getCommentsByPostId(post.id),
 }));
 
 export const App = () => (
